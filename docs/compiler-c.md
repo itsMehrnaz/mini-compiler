@@ -7,7 +7,7 @@ Node *root = expr(); this means to read the whole program and made the AST tree
 now let's pretend that this is our input:   3 + 4 * 2 {
 
 
-
+<!--
     at first we call expr()
     this function will read a mul first than mul() execute  {
 
@@ -87,4 +87,27 @@ so now we have node = 3
 >}
 
 >if you wonder what is calloc for read here :)
+-->
 
+```
+cur_tok is on 3
+  └─ term() is called
+       └─ primary() reads number 3
+       └─ next_token()  <- cur_tok moves to +
+       └─ term() sees +, not my job, returns
+
+cur_tok is on +
+  └─ expr() sees +, enters the loop
+  └─ kind = ND_ADD
+  └─ next_token()  <- cur_tok moves to 5
+
+cur_tok is on 5
+  └─ term() is called again
+       └─ primary() reads number 5
+       └─ next_token()  <- cur_tok moves to *
+       └─ term() sees *, this IS my job!
+       └─ next_token()  <- cur_tok moves to 2
+       └─ primary() reads number 2
+       └─ builds ND_MUL node with lhs=5 and rhs=2
+       └─ returns
+```
