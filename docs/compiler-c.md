@@ -2,6 +2,8 @@
 
 i have a problem at the first place to just bring up the first simple Calculator Compiler and i found out it's because of the concept that it is not clear enough to me, that's why i decided to explain them here for everyone who has the same problem
 
+Node *root = expr(); this means to read the whole program and made the AST tree 
+
 now let's pretend that this is our input:   3 + 5 * 2 
 
 
@@ -109,3 +111,6 @@ cur_tok is on 5
        └─ builds ND_MUL node with lhs=5 and rhs=2
        └─ returns
 ```
+
+
+<img src="/docs/ast_tree_3_plus_5_mul_2.svg" alt="AST tree">
