@@ -2,8 +2,6 @@
 
 i have a problem at the first place to just bring up the first simple Calculator Compiler and i found out it's because of the concept that it is not clear enough to me, that's why i decided to explain them here for everyone who has the same problem
 
-Node *root = expr(); this means to read the whole program and made the AST tree 
-
 now let's pretend that this is our input:   3 + 5 * 2 
 
 
