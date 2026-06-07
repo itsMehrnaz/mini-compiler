@@ -117,41 +117,41 @@ cur_tok is on 5
 
 
 
->Lexer
+**Lexer**
 
-Input is a text string like "3 + 5 * 2"
-Reads it character by character
-Converts each piece into a token
-A token is a struct with two fields: kind and value
-kind is the type of token like TOK_PLUS or TOK_NUMBER
-value is only filled for numbers
-cur_tok always points to the current token
-next_token() moves cur_tok one step forward
+>Input is a text string like "3 + 5 * 2"
+>Reads it character by character
+>Converts each piece into a token
+>A token is a struct with two fields: kind and value
+>kind is the type of token like TOK_PLUS or TOK_NUMBER
+>value is only filled for numbers
+>cur_tok always points to the current token
+>next_token() moves cur_tok one step forward
 
-Parser
+**Parser**
 
-Takes tokens and builds an AST tree
-Each priority level has its own function
-expr() is responsible for + and -
-term() is responsible for * and /
-primary() is responsible for numbers and parentheses
-Each function first calls the higher priority function
-This makes * get evaluated before +
+>Takes tokens and builds an AST tree
+>Each priority level has its own function
+>expr() is responsible for + and -
+>term() is responsible for * and /
+>primary() is responsible for numbers and parentheses
+>Each function first calls the higher priority function
+>This makes * get evaluated before +
 
-AST
+**AST**
 
-A tree where each node is a Node struct
-Each Node has four fields: kind, lhs, rhs, val
-kind is the type of node like ND_ADD or ND_NUM
-lhs and rhs are pointers to child nodes
-val is only filled for ND_NUM
-Nodes are built in the heap using calloc
-calloc zeros all fields so no garbage remains
+>A tree where each node is a Node struct
+>Each Node has four fields: kind, lhs, rhs, val
+>kind is the type of node like ND_ADD or ND_NUM
+>lhs and rhs are pointers to child nodes
+>val is only filled for ND_NUM
+>Nodes are built in the heap using calloc
+>calloc zeros all fields so no garbage remains
 
-Memory
+**Memory**
 
-Stack is for regular variables and pointers
-Heap is for AST nodes
-malloc gives memory but does not clear it
-calloc gives memory and zeros it
-Each node accesses its fields using ->
+>Stack is for regular variables and pointers
+>Heap is for AST nodes
+>malloc gives memory but does not clear it
+>calloc gives memory and zeros it
+>Each node accesses its fields using ->
