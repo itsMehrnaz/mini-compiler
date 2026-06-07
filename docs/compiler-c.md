@@ -4,7 +4,7 @@ i have a problem at the first place to just bring up the first simple Calculator
 
 Node *root = expr(); this means to read the whole program and made the AST tree 
 
-now let's pretend that this is our input:   3 + 4 * 2 {
+now let's pretend that this is our input:   3 + 5 * 2 
 
 
 <!--
