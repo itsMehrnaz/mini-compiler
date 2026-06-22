@@ -154,4 +154,29 @@ cur_tok is on 5
 >Heap is for AST nodes  
 >malloc gives memory but does not clear it  
 >calloc gives memory and zeros it  
->Each node accesses its fields using ->  
+>Each node accesses its fields using ->
+
+
+ok now let's see how to write the CodeGeneration part:
+
+```
+gen(ND_ADD)
+  └─ calls gen(lhs) which is gen(ND_NUM=3)
+       └─ mov eax, 3
+       └─ returns
+  └─ push eax          <- stack: [3]
+  └─ calls gen(rhs) which is gen(ND_MUL)
+       └─ calls gen(lhs) which is gen(ND_NUM=5)
+            └─ mov eax, 5
+            └─ returns
+       └─ push eax      <- stack: [3, 5]
+       └─ calls gen(rhs) which is gen(ND_NUM=2)
+            └─ mov eax, 2
+            └─ returns
+       └─ pop ecx       <- ecx = 5, stack: [3]
+       └─ imul eax, ecx <- eax = 2 * 5 = 10
+       └─ returns
+  └─ pop ecx            <- ecx = 3, stack: []
+  └─ add eax, ecx       <- eax = 10 + 3 = 13
+  └─ returns
+```
